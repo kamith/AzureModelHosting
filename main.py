@@ -8,7 +8,7 @@ from base64 import b64decode
 import io
 import uvicorn
 
-class ImageModel(BaseModel):
+class ImageModel(BaseModel): 
     data: str
 
 # Variables
