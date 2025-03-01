@@ -1,6 +1,12 @@
-FROM node:15-alpine
+FROM python:3.9
 
-COPY . /src
-RUN cd /src && npm install
-EXPOSE 80
-CMD ["node", "/src/server.js"]
+WORKDIR /code
+
+COPY . .
+
+RUN apt update
+RUN apt install -y libgl1-mesa-glx
+
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
+
+CMD ["fastapi", "run", "main.py", "--port", "80"]
